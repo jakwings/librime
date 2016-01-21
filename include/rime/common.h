@@ -12,6 +12,7 @@
 #include <map>
 #include <memory>
 #include <set>
+#include <sstream>
 #include <string>
 #include <utility>
 #include <unordered_map>
@@ -44,6 +45,7 @@ using std::map;
 using std::pair;
 using std::set;
 using std::string;
+using std::stringstream;
 using std::vector;
 
 template <class Key, class T>

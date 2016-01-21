@@ -127,8 +127,29 @@ class UniquifiedCandidate : public Candidate {
         items_.front()->text() : text_;
   }
   string comment() const {
-    return comment_.empty() && !items_.empty() ?
-        items_.front()->comment() : comment_;
+    if (comment_.empty() && !items_.empty()) {
+      stringstream ss;
+      for (const auto& cand : items_) {
+        if (cand->type() == "simplified") {
+          auto c = Candidate::GetGenuineCandidate(cand);
+          ss << ' ' << c->comment();
+        } else {
+          ss << ' ' << cand->comment();
+        }
+      }
+      set<string> codes;
+      string code;
+      while (ss >> code)
+        codes.insert(move(code));
+      ss.str("");
+      ss.clear();
+      for (auto& code : codes)
+        ss << ' ' << code;
+      string result = ss.str();
+      return result.size() > 1 ? result.substr(1) : "";
+    } else {
+      return comment_;
+    }
   }
   string preedit() const {
     return !items_.empty() ? items_.front()->preedit() : string();
