@@ -24,13 +24,13 @@ before_install:
   - if is_linux; then make -C thirdparty/src/opencc build; fi
   - if is_linux; then sudo make -C thirdparty/src/opencc install; fi
 
-  - if is_osx; then brew unlink boost; fi
-  - if is_osx; then $XCURL -o $DOWNLOAD/boost.tar.gz $BOOST_URL; fi
-  - if is_osx; then tar -C $DOWNLOAD -xf $DOWNLOAD/boost.tar.gz; fi
-  - if is_osx; then pushd $DOWNLOAD/boost_*; fi
-  - if is_osx; then ./bootstrap.sh --with-libraries=filesystem,locale,regex,signals,system --without-icu; fi
-  - if is_osx; then ./b2 -q -d0 --prefix=/usr/local variant=release link=static threading=multi cxxflags=-std=c++11 cxxflags=-stdlib=libc++ linkflags=-stdlib=libc++ install; fi
-  - if is_osx; then popd; fi
+  #- if is_osx; then brew unlink boost; fi
+  #- if is_osx; then $XCURL -o $DOWNLOAD/boost.tar.gz $BOOST_URL; fi
+  #- if is_osx; then tar -C $DOWNLOAD -xf $DOWNLOAD/boost.tar.gz; fi
+  #- if is_osx; then pushd $DOWNLOAD/boost_*; fi
+  #- if is_osx; then ./bootstrap.sh --with-libraries=filesystem,locale,regex,signals,system --without-icu; fi
+  #- if is_osx; then ./b2 -q -d0 --prefix=/usr/local variant=release link=static threading=multi cxxflags=-std=c++11 cxxflags=-stdlib=libc++ linkflags=-stdlib=libc++ install; fi
+  #- if is_osx; then popd; fi
   - if is_osx; then make -f Makefile.xcode thirdparty; fi
 
 script:
