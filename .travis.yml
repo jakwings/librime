@@ -5,10 +5,10 @@ matrix:
     - os: osx
       compiler: clang
       #osx_image: xcode6.1  # default: xcode6.1 (SDK min:10.9)
-    - os: linux
-      compiler: gcc
-      dist: trusty
-      sudo: required
+    #- os: linux
+    #  compiler: gcc
+    #  dist: trusty
+    #  sudo: required
 
 before_install:
   - is_linux() { [[ "$TRAVIS_OS_NAME" == linux ]]; }
@@ -28,7 +28,7 @@ script:
   - if is_linux; then ./rime_test; fi
   - if is_linux; then popd; fi
 
-  - if is_osx; then make -f Makefile.xcode debug; fi
-  - if is_osx; then pushd xdebug/test; fi
-  - if is_osx; then ./Debug/rime_test; fi
-  - if is_osx; then popd; fi
+  - if is_osx; then make -f Makefile.xcode; fi
+  #- if is_osx; then pushd xdebug/test; fi
+  #- if is_osx; then ./Debug/rime_test; fi
+  #- if is_osx; then popd; fi
