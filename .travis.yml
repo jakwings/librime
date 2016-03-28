@@ -20,6 +20,7 @@ before_install:
   - if is_linux; then make -C thirdparty/src/opencc build; fi
   - if is_linux; then sudo make -C thirdparty/src/opencc install; fi
 
+  - if is_osx; then brew update; fi
   - if is_osx; then brew install gflags; fi
   - if is_osx; then make -f Makefile.xcode thirdparty; fi
 
